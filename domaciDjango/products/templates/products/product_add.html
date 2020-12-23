@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Add Product</title>
+  </head>
+  <body>
+    <div class="product-add">
+      <h2>OBJAVI OGLAS</h2>
+
+      <form class="site-form" action="{% url 'products:add' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+
+        <input type="submit" name="" value="OBJAVI">
+      <form>
+
+  </body>
+</html>

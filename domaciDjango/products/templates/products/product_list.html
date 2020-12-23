@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Products</title>
+  </head>
+  <body>
+    <h1>KUPUJEM PRODAJEM - MINI</h1>
+
+    <h2>OGLASI</h1>
+
+    <div class="products">
+      {% for product in products %}
+      <div class="product">
+        <h2><a href="{% url 'products:detail' product.slug %}">{{ product.title }}</a></h2>
+        <p>{{ product.snippet }}</p>
+        <p>{{ product.date }}</p>
+      {% endfor %}
+
+      <ul>
+        {% if user.is_authenticated %}
+        <li>
+          <form class="logout-link" action="{% url 'users:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="sumbit">Izloguj se</button>
+          </form>
+        </li>
+        <li>
+          <form class="logout-link" action="{% url 'products:add' %}" method="get">
+            <button type="sumbit">Dodaj oglas</button>
+          </form>
+        </li>
+        {% else %}
+
+        <li>
+          <form class="logout-link" action="{% url 'users:login' %}" method="get">
+            <button type="sumbit">Uloguj se </button>
+          </form>
+        </li>
+        <li>
+          <form class="logout-link" action="{% url 'users:signup' %}" method="get">
+            <button type="sumbit">Registruj se</button>
+          </form>
+        </li>
+        {% endif %}
+      </ul>
+      {% if messages %}
+        {% for message in messages %}
+          {% if message.tags %}  <script>alert("{{ message }}")</script>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+  </body>
+</html>

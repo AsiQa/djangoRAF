@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Signup</title>
+  </head>
+  <body>
+    <div class="signup">
+      <h1>MOLIMO REGISTRUJTE SE </h1>
+      <form class="site-form" action="{% url 'users:signup' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="" value="Sign Up">
+      <form>
+  </body>
+</html>
